@@ -1,0 +1,95 @@
+.pimper-details {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  font-family: Arial, sans-serif;
+}
+
+.pimper-header {
+  background-size: cover;
+  background-position: center;
+  height: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.pimper-header h1 {
+  font-size: 36px;
+  margin: 0;
+}
+
+.pimper-info {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.pimper-thematics {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.pimper-category {
+  background-color: #333;
+  color: #fff;
+  padding: 5px 10px;
+  margin: 5px;
+  border-radius: 3px;
+  font-size: 14px;
+}
+
+.pimper-rates {
+  font-size: 16px;
+  color: #333;
+}
+
+.pimper-rates .rate-value {
+  display: flex;
+  align-items: center;
+}
+
+.pimper-rates .fas {
+  color: gold;
+  margin-right: 5px;
+}
+
+.pimper-description {
+  margin-top: 20px;
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+.pimpeur-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.pimpeur-card {
+  width: calc(33.333% - 20px);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  padding: 15px;
+  background: #fff;
+  border-radius: 8px;
+  text-align: center;
+}
+
+.pimpeur-card img {
+  width: 100%;
+  height: auto;
+  border-radius: 50%;
+}
+
+.pimpeur-card h2 {
+  margin-top: 10px;
+  font-size: 20px;
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}

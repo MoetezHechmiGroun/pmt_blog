@@ -1156,9 +1156,9 @@ class rtTPGElementorHelper {
 				) ) {
 					continue;
 				}
-				if ( in_array( $tax->name, $_all_taxonomies ) ) {
-					continue;
-				}
+				// if ( in_array( $tax->name, $_all_taxonomies ) ) {
+				// continue;
+				// }
 
 				$taxonomies_list[ $tax->name ] = $tax->label;
 				$_all_taxonomies[]             = $tax->name;
@@ -1222,7 +1222,7 @@ class rtTPGElementorHelper {
 				$term_first = [ '0' => esc_html__( '--Select--', 'the-post-grid' ) ];
 				$term_lists = get_terms(
 					[
-						'taxonomy'   => $tax->name, // Custom taxonomy name
+						'taxonomy'   => $tax->name, // Custom taxonomy name.
 						'hide_empty' => true,
 						'fields'     => 'id=>name',
 					]
@@ -1230,8 +1230,14 @@ class rtTPGElementorHelper {
 
 				$term_lists = $term_first + $term_lists;
 
+				$terms_prefix = '';
+				if ( 'post' != $post_type ) {
+					$terms_prefix = $post_type . '_';
+				}
+				$terms_prefix .= $tax->name;
+
 				$ref->add_control(
-					$tax->name . '_default_terms',
+					$terms_prefix . '_default_terms',
 					[
 						'label'     => esc_html__( 'Default ', 'the-post-grid' ) . $tax->label,
 						'type'      => \Elementor\Controls_Manager::SELECT,
@@ -3052,9 +3058,9 @@ class rtTPGElementorHelper {
 				if ( 'post_format' == $tax->name ) {
 					continue;
 				}
-				if ( in_array( $tax->name, $_all_taxonomies ) ) {
-					continue;
-				}
+				// if ( in_array( $tax->name, $_all_taxonomies ) ) {
+				// continue;
+				// }
 				$_all_taxonomies[]          = $tax->name;
 				$term_options[ $tax->name ] = $tax->label;
 			}
@@ -4008,6 +4014,51 @@ class rtTPGElementorHelper {
 				],
 				'selectors' => [
 					'{{WRAPPER}} .tpg-el-main-wrapper .tpg-el-image-wrap img' => 'width: {{VALUE}};',
+				],
+			]
+		);
+
+		$ref->add_responsive_control(
+			'thumbnail_content_width',
+			[
+				'label'      => esc_html__( 'Thumbnail Content Width', 'the-post-grid' ),
+				'type'       => Controls_Manager::SLIDER,
+				'size_units' => [ 'px' ],
+				'range'      => [
+					'px' => [
+						'min'  => 100,
+						'max'  => 2000,
+						'step' => 1,
+					],
+				],
+				'selectors'  => [
+					'{{WRAPPER}} .tpg-el-main-wrapper .rt-grid-hover-item .rt-holder .grid-hover-content' => 'width: {{SIZE}}{{UNIT}};margin-left:auto;margin-right:auto;',
+				],
+				'condition'  => [
+					$prefix . '_layout' => 'slider-layout7',
+				],
+			]
+		);
+
+		$ref->add_responsive_control(
+			'thumbnail_content_margin',
+			[
+				'label'              => esc_html__( 'Thumbnail Content Margin', 'the-post-grid' ),
+				'type'               => Controls_Manager::DIMENSIONS,
+				'size_units'         => [ 'px', 'custom' ],
+				'allowed_dimensions' => 'all',
+				'selectors'          => [
+					'{{WRAPPER}} .tpg-el-main-wrapper .rt-grid-hover-item .rt-holder .grid-hover-content' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				],
+				'condition'          => [
+					$prefix . '_layout' => 'slider-layout7',
+				],
+				'default'            => [
+					'top'      => '',
+					'right'    => '',
+					'bottom'   => '',
+					'left'     => '',
+					'isLinked' => false,
 				],
 			]
 		);
